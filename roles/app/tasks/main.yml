@@ -1,0 +1,21 @@
+---
+- name: Clone git repository
+  git: >
+    dest=/var/www/laravel
+    repo=https://github.com/laravel/laravel.git
+    update=no
+  sudo: yes
+  sudo_user: www-data
+  register: cloned
+
+- name: composer create-project
+  composer: command=create-project working_dir=/var/www/laravel optimize_autoloader=no
+  sudo: yes
+  sudo_user: www-data
+  when: cloned|changed
+
+- name: set APP_DEBUG=false
+  lineinfile: dest=/var/www/laravel/.env regexp='^APP_DEBUG=' line=APP_DEBUG=false
+
+- name: set APP_ENV=production
+  lineinfile: dest=/var/www/laravel/.env regexp='^APP_ENV=' line=APP_ENV=production

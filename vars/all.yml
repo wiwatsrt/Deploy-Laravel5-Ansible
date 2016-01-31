@@ -1,0 +1,33 @@
+---
+server:
+    install: '1'
+    packages: [fail2ban, git, mcrypt, unzip]
+    timezone: Asia/Bangkok
+    locale: en_US.UTF-8
+
+nginx:
+    install: '1'
+    docroot: /usr/share/nginx/html
+    servername: srisattha.com
+
+mariadb:
+    install: '1'
+    root_password: 'password'
+    database: db
+    user: user
+    password: password
+    dump: ''
+
+php:
+    install: '1'
+    ppa: php5-5.6
+    packages: [php5-cli, php5-intl, php5-mcrypt, php5-mysql, php5-curl, php5-fpm, php5-gd, php5-json, php5-sqlite, sqlite3]
+
+hhvm:
+    install: '0'
+
+elasticsearch:
+    install: '1'
+    port: '9200'
+    version: 1.5.2
+

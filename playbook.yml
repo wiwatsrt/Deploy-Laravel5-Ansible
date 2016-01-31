@@ -1,0 +1,14 @@
+---
+- hosts: webservers
+  sudo: yes
+  vars_files:
+    - vars/all.yml
+  roles:
+    - server
+    - nginx
+    - mariadb
+    - elasticsearch
+    - php
+    - hhvm
+    - composer
+    - app
